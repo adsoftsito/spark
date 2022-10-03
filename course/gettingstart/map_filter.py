@@ -25,7 +25,7 @@ logger.addHandler(handler)
 # current time variable to be used for logging purpose
 dt_string = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
 # change it to your app name
-AppName = "MapFilter"
+AppName = "MapFilter" + "_" + "adsoft" + "_"+ str(dt_string)
 
 
 def main():
@@ -37,7 +37,7 @@ def main():
 
     #do something here
 
-    my_list = [1,2,3,4,5]
+    my_list = [1,2,3,4,5,6,7,8,9,10]
     squared_my_list = list(map(lambda x: x*x, my_list))
     logger.info(squared_my_list)
 

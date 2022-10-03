@@ -25,7 +25,7 @@ logger.addHandler(handler)
 # current time variable to be used for logging purpose
 dt_string = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
 # change it to your app name
-AppName = "Transformations"
+AppName = "Transformations" + "_" + "adsoft"
 
 
 def main():
@@ -43,10 +43,10 @@ def main():
 
     #do something here
 
-    numbers = list(range(1,100))
+    numbers = list(range(1,1000))
 
     #Create RDD, map() transformations
-    numRDD = sc.parallelize(numbers)
+    numRDD = sc.parallelize(numbers, 16)
     cubeRDD = numRDD.map(lambda x: x**3)
     numbers_all = cubeRDD.collect()
 

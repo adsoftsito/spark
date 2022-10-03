@@ -1,10 +1,10 @@
 """
-# Title : PySpark Script Template
+# Title : wordcount.py
 # Description : This template can be used to create pyspark script
-# Author : sqlandhadoop.com
-# Date : 30-June-2021
+# Author : your-name
+# Date : Oct 2, 2022
 # Version : 1.0 (Initial Draft)
-# Usage : spark-submit --executor-memory 4G --executor-cores 4 PySpark_Script_Template.py > ./PySpark_Script_Template.log 2>&1 &
+# Usage : spark-submit --deploy-mode cluster wordcount.py
 """
 
 # import modules
@@ -29,16 +29,8 @@ logger.addHandler(handler)
 # current time variable to be used for logging purpose
 dt_string = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
 # change it to your app name
-AppName = "wordcount"
+AppName = "wordcount" + "_" + "your_name" + "_" + str(dt_string)
 
-
-# adding dummy function. change or remove it.
-def some_function1():
-    logger.info("Inside some_function 1")
-
-# adding dummy function. change or remove it.
-def some_function2():
-    logger.info("Inside some_function 2")
 
 def main():
     # start spark code
@@ -51,19 +43,20 @@ def main():
 
 
 
-    sc = SparkContext(appName="WordCount")
+    sc = SparkContext(appName=AppName)
 
     start_time = datetime.now()
 
-    f = sc.textFile("hdfs://master:9000/user/hadoop/books/alice.txt")
+    f = sc.textFile("hdfs://centos:9000/user/hadoop/books/alice.txt")
     counts = f.flatMap(lambda line:line.split(" ")) \
         .map(lambda word: (word,1)) \
         .reduceByKey(lambda a,b: a+b)
 
-    counts.saveAsTextFile("hdfs://master:9000/user/hadoop/books/aliceResult")
+
+    counts.saveAsTextFile("hdfs://centos:9000/user/hadoop/books/aliceResult2") 
 
     diff = datetime.now() - start_time
-    print "Spend %d.%d seconds" % (diff.seconds, diff.microseconds)  
+    #print ("Spend %d.%d seconds", (diff.seconds, diff.microseconds))  
     logger.info("Previewing ...")
 
     logger.info("Ending spark application")

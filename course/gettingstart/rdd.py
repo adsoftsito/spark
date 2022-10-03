@@ -43,7 +43,7 @@ def main():
 
     #do something here
 
-    numbers = list(range(1,10))
+    numbers = list(range(1,100))
     logger.info(type(numbers))
 
     # load the numbers into PySpark

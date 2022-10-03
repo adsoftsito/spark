@@ -1,15 +1,14 @@
 """
-# Title : PySpark Script Template
+# Title : hello.py
 # Description : This template can be used to create pyspark script
-# Author : sqlandhadoop.com
-# Date : 30-June-2021
-# Version : 1.0 (Initial Draft)
-# Usage : spark-submit --executor-memory 4G --executor-cores 4 PySpark_Script_Template.py > ./PySpark_Script_Template.log 2>&1 &
+# Author : your-name
+# Date : Oct 1, 2022
+# Version : 1.0 
+# Usage : spark-submit --deploy-mode client hello.py
 """
 
 # import modules
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import col
 import sys,logging
 from datetime import datetime
 
@@ -25,7 +24,7 @@ logger.addHandler(handler)
 # current time variable to be used for logging purpose
 dt_string = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
 # change it to your app name
-AppName = "Hello"
+AppName = "Hello" + "_" + "adsoft"
 
 
 # adding dummy function. change or remove it.
