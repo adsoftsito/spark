@@ -4,7 +4,7 @@
 # Author : adsoft
 # Date : oct 2, 2022
 # Version : 1.0 (Initial Draft)
-# Usage : spark-submit --deploy-mode client map_filter.py
+# Usage : spark-submit --deploy-mode client map_filter_adolfo.py
 """
 
 # import modules
@@ -25,7 +25,7 @@ logger.addHandler(handler)
 # current time variable to be used for logging purpose
 dt_string = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
 # change it to your app name
-AppName = "MapFilter" + "_" + "adsoft" + "_"+ str(dt_string)
+AppName = "MapFilter" + "_" + "adolfo" 
 
 
 def main():

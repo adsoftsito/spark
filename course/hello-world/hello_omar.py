@@ -1,15 +1,14 @@
 """
-# Title : map_filter.py
+# Title : hello.py
 # Description : This template can be used to create pyspark script
-# Author : adsoft
-# Date : oct 2, 2022
-# Version : 1.0 (Initial Draft)
-# Usage : spark-submit --deploy-mode client map_filter.py
+# Author : Omar
+# Date : Oct 5, 2022
+# Version : 1.0 
+# Usage : spark-submit --deploy-mode client hello.py
 """
 
 # import modules
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import col
 import sys,logging
 from datetime import datetime
 
@@ -25,8 +24,16 @@ logger.addHandler(handler)
 # current time variable to be used for logging purpose
 dt_string = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
 # change it to your app name
-AppName = "MapFilter" + "_" + "adsoft" + "_"+ str(dt_string)
+AppName = "Hello" + "_" + "Omar"
 
+
+# adding dummy function. change or remove it.
+def some_function1():
+    logger.info("Inside some_function 1")
+
+# adding dummy function. change or remove it.
+def some_function2():
+    logger.info("Inside some_function 2")
 
 def main():
     # start spark code
@@ -34,17 +41,15 @@ def main():
     spark.sparkContext.setLogLevel("ERROR")
     logger.info("Starting spark application")
 
+    #calling function 1
+    some_function1()
+
+    #calling function 2
+    some_function2()
 
     #do something here
-
-    my_list = [1,2,3,4,5,6,7,8,9,10]
-    squared_my_list = list(map(lambda x: x*x, my_list))
-    logger.info(squared_my_list)
-
-    filtered_my_list = list(filter(lambda x: (x%2 != 0), my_list))
-    logger.info(filtered_my_list)
-
-
+    logger.info("Reading ...")
+    logger.info("Previewing ...")
     logger.info("Ending spark application")
     # end spark code
     spark.stop()

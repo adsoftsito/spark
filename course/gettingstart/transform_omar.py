@@ -1,10 +1,10 @@
 """
-# Title : map_filter.py
+# Title : PySpark Script Template
 # Description : This template can be used to create pyspark script
-# Author : adsoft
-# Date : oct 2, 2022
+# Author : sqlandhadoop.com
+# Date : 30-June-2021
 # Version : 1.0 (Initial Draft)
-# Usage : spark-submit --deploy-mode client map_filter.py
+# Usage : spark-submit --executor-memory 4G --executor-cores 4 PySpark_Script_Template.py > ./PySpark_Script_Template.log 2>&1 &
 """
 
 # import modules
@@ -25,29 +25,38 @@ logger.addHandler(handler)
 # current time variable to be used for logging purpose
 dt_string = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
 # change it to your app name
-AppName = "MapFilter" + "_" + "adsoft" + "_"+ str(dt_string)
+AppName = "Transformations" + "_" + "omar"
 
 
 def main():
     # start spark code
+
+    # create SparkSession
     spark = SparkSession.builder.appName(AppName+"_"+str(dt_string)).getOrCreate()
     spark.sparkContext.setLogLevel("ERROR")
+
+    # create SparkContext
+    sc = spark.sparkContext
+
     logger.info("Starting spark application")
 
 
     #do something here
 
-    my_list = [1,2,3,4,5,6,7,8,9,10]
-    squared_my_list = list(map(lambda x: x*x, my_list))
-    logger.info(squared_my_list)
+    numbers = list(range(1,1000))
 
-    filtered_my_list = list(filter(lambda x: (x%2 != 0), my_list))
-    logger.info(filtered_my_list)
+    #Create RDD, map() transformations
+    numRDD = sc.parallelize(numbers, 16)
+    cubeRDD = numRDD.map(lambda x: x**3)
+    numbers_all = cubeRDD.collect()
 
+    #[print(num) for num in numbers_all];
+    logger.info(numbers_all)
 
     logger.info("Ending spark application")
     # end spark code
     spark.stop()
+    sc.stop()
     return None
 
 # Starting point for PySpark
